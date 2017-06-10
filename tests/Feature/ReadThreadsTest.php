@@ -26,9 +26,9 @@ class ReadThreadsTest extends TestCase
     }
 
     /** @test */
-    public function aUserCanViewASingleThread()
+    public function aUserCanReadASingleThread()
     {
-        $response = $this->get('/threads/' . $this->thread->id)
+        $response = $this->get($this->thread->path())
             ->assertSee($this->thread->title);
     }
 
