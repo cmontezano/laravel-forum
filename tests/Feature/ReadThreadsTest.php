@@ -37,7 +37,7 @@ class ReadThreadsTest extends TestCase
     {
         $reply = create('App\Reply', ['thread_id' => $this->thread->id]);
 
-        $response = $this->get('/threads/' . $this->thread->id)
+        $response = $this->get($this->thread->path())
             ->assertSee($reply->body);
     }
 }

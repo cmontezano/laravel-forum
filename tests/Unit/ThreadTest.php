@@ -18,6 +18,14 @@ class ThreadTest extends TestCase
         $this->thread = create('App\Thread');
 	}
 
+    public function testAThreadCanMakeAStringPath()
+    {
+        $this->assertEquals(
+            "/threads/{$this->thread->channel->slug}/{$this->thread->id}",
+            $this->thread->path()
+        );
+    }
+
     public function testAThreadHasReplies()
     {
         $this->assertInstanceOf(
@@ -39,5 +47,10 @@ class ThreadTest extends TestCase
 		]);
 
 		$this->assertCount(1, $this->thread->replies);
+    }
+
+    public function testAThreadBelongsToAChannel()
+    {
+        $this->assertInstanceOf('App\Channel', $this->thread->channel);
     }
 }
